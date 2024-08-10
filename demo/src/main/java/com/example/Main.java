@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.Random;
+
 import com.example.pages.CartPage;
 import com.example.pages.HomePage;
 import com.example.pages.ProductPage;
@@ -16,13 +18,10 @@ public class Main {
 
         HomePage homePage = new HomePage(page);
         homePage.navigateToHomePage();
-        homePage.clickPhones();
+        homePage.clickSignup();
+        homePage.register("tony" + String.valueOf(new Random().nextInt(10000)), "12345678");
 
-        ProductPage productPage = new ProductPage(page);
-        productPage.addProductToCart("Sony xperia Z5");
-
-        CartPage cartPage = new CartPage(page);
-        cartPage.placeOrder();
+        homePage.assertMessageAfterRegister();
 
         browser.close();
         playwright.close();
